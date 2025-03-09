@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <title>QRR</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+      }
+      video {
+        max-width: 50vw;
+        max-height: 30vh;
+      }
+      button {
+        font-size: 1.2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <video></video>
+    <a>(not read yet)</a>
+    <button onclick="copy()">Copy</button>
+    <button onclick="startScan()" disabled>Re-scan</button>
+  </body>
+  <script>
+    const video = document.querySelector('video');
+    const output = document.querySelector('a');
+    const rescanButton = document.querySelector('button:last-of-type');
+    const constraints = {
+      video: {
+        facingMode: 'environment',
+        width: { min: 640, ideal: 1280, max: 1920 },
+        height: { min: 360, ideal: 720, max: 1080 }
+      }
+    };
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then(stream => {
+        video.srcObject = stream;
+        startScan();
+      });
+    const detector = new BarcodeDetector();
+    let timer;
+    const startScan = () => {
+      clearInterval(timer);
+      video.play();
+      rescanButton.disabled = true;
+      timer = setInterval(() => {
+        if (video.readyState < 2) return;
+        detector.detect(video)
+          .then(barcodes => {
+            if (barcodes.length === 0) return;
+            clearInterval(timer);
+            video.pause();
+            const value = barcodes[0].rawValue;
+            output.textContent = value;
+            if (URL.canParse(value)) {
+              output.href = value;
+            } else {
+              output.removeAttribute('href');
+            }
+            rescanButton.disabled = false;
+          });
+      }, 50)
+    };
+    const copy = () => navigator.clipboard.writeText(output.textContent);
+  </script>
+</html>
