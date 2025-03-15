@@ -1,5 +1,11 @@
 {
   "name": "QRR",
+  "short_name": "QRR",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "icon.png",
@@ -7,10 +13,6 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/index.html",
-  "display": "standalone",
-  "background_color": "#fff",
-  "orientation": "portrait",
   "shortcuts": [
     {
       "name": "QRR",
