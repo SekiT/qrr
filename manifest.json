@@ -1,0 +1,27 @@
+{
+  "name": "QRR",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/index.html",
+  "display": "browser",
+  "background_color": "#fff",
+  "orientation": "portrait",
+  "shortcuts": [
+    {
+      "name": "QRR",
+      "url": "/index.html",
+      "icons": [
+        {
+          "src": "icon.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}
