@@ -1,7 +1,7 @@
 {
   "name": "QRR",
   "short_name": "QRR",
-  "start_url": "/index.html",
+  "start_url": "/qrr/index.html",
   "display": "standalone",
   "theme_color": "#ffffff",
   "background_color": "#ffffff",
@@ -16,7 +16,7 @@
   "shortcuts": [
     {
       "name": "QRR",
-      "url": "/index.html",
+      "url": "/qrr/index.html",
       "icons": [
         {
           "src": "icon.png",
